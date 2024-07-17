@@ -6,15 +6,18 @@ interface IRequet {
     id: string;
 }
 
-class ShowProductService {
-    public async execute({ id }: IRequet): Promise<Product | null> {
+class DeleteProductService {
+
+
+    public async execute({ id }: IRequet): Promise<void> {
 
         const product = await ProductRepository.findOne({ where: { id } });
         if (!product) {
             throw new AppError("Product not found");
         }
-        return product;
+
+        await ProductRepository.remove(product);
     }
 }
 
-export default ShowProductService;
+export default DeleteProductService;
