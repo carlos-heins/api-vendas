@@ -31,4 +31,4 @@ app.use((error: Error, request: Request, response: Response, next: NextFunction)
 
 app.listen(3333, () => {
     console.log("---------->Server has been inicialized");
-})
+});

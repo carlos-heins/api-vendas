@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 
-import ListProductService from '../services/ListProductService.ts';
+import ListProductService from '../services/ListProductService';
 import ShowProductService from '../services/ShowProductService';
 import CreateProductService from '../services/CreateProductService';
 import UpdateProductService from '../services/UpdateProductService';
