@@ -1,4 +1,4 @@
-import Product from "../typeorm/entities/Product";
+import Products from "../typeorm/entities/Products";
 import { ProductRepository } from "../typeorm/repositories/ProductRepository";
 import AppError from "@shared/errors/AppError";
 
@@ -10,7 +10,7 @@ interface IRequest {
 }
 
 class UpdateProductService {
-    public async execute({ id, name, price, quantity }: IRequest): Promise<Product> {
+    public async execute({ id, name, price, quantity }: IRequest): Promise<Products> {
         const product = await ProductRepository.findOne({ where: { id } });
         if (!product) {
             throw new AppError("Product not found");

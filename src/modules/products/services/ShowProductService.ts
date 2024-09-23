@@ -1,5 +1,5 @@
 import AppError from "@shared/errors/AppError";
-import Product from "../typeorm/entities/Product";
+import Products from "../typeorm/entities/Products";
 import { ProductRepository } from "../typeorm/repositories/ProductRepository";
 
 interface IRequet {
@@ -7,7 +7,7 @@ interface IRequet {
 }
 
 class ShowProductService {
-    public async execute({ id }: IRequet): Promise<Product | null> {
+    public async execute({ id }: IRequet): Promise<Products | null> {
 
         const product = await ProductRepository.findOne({ where: { id } });
         if (!product) {

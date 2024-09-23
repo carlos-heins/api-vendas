@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
 
-import ListProductService from '../services/ListProductService.ts';
-import ShowProductService from '../services/ShowProductService.js';
+import ListProductService from '../services/ListProductService';
+import ShowProductService from '../services/ShowProductService';
 import CreateProductService from '../services/CreateProductService';
-import UpdateProductService from '../services/UpdateProductService.js';
+import UpdateProductService from '../services/UpdateProductService';
 import DeleteProductService from '../services/DeleteProductService';
 
 export default class ProductsController {

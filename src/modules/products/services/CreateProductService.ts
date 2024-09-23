@@ -1,4 +1,4 @@
-import Product from "../typeorm/entities/Product";
+import Products from "../typeorm/entities/Products";
 import { ProductRepository } from "../typeorm/repositories/ProductRepository";
 import AppError from "@shared/errors/AppError";
 
@@ -9,7 +9,7 @@ interface IRequest {
 }
 
 class CreateProductService {
-    public async execute({name, price, quantity}:IRequest): Promise<Product> {
+    public async execute({name, price, quantity}:IRequest): Promise<Products> {
         const productAlreadyExists = await ProductRepository.findByName(name);
         if(productAlreadyExists) {
             throw new AppError("There is alreayd one product with this name");
