@@ -23,7 +23,6 @@ class CreateSessionsService {
     }
 
     const passwordConfirmed = await compare(password, user.password)
-    console.log(passwordConfirmed)
 
     if (!passwordConfirmed) {
       throw new AppError('Incorrect email or password.', 401)
