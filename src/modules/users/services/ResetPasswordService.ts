@@ -10,7 +10,7 @@ interface IRequest {
 }
 
 class ResetPasswordService {
-  public async execute({ token , password}: IRequest): Promise<void> {
+  public async execute({ token, password }: IRequest): Promise<void> {
     const userToken = await UserTokensRepository.findByToken(token)
     if (!userToken) {
       throw new AppError('User token does not exists.')
@@ -21,14 +21,14 @@ class ResetPasswordService {
       throw new AppError('User does not exists.')
     }
 
-    const tokenCreatedAt = userToken.created_at;
-    const compareDate = dayjs(tokenCreatedAt).add(2, "hour");
+    const tokenCreatedAt = userToken.created_at
+    const compareDate = dayjs(tokenCreatedAt).add(2, 'hour')
 
-    if(compareDate.isAfter(dayjs())) {
-      throw new AppError("Token expired.")
+    if (compareDate.isAfter(dayjs())) {
+      throw new AppError('Token expired.')
     }
 
-    user.password = await hash(password, 8);
+    user.password = await hash(password, 8)
   }
 }
 
