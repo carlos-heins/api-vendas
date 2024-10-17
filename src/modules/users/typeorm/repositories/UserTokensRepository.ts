@@ -9,9 +9,9 @@ export const UserTokensRepository = AppDataSource.getRepository(
       where: {
         token,
       },
-      order: {
-        created_at: 'DESC',
-      },
+      // order: {
+      //   created_at: 'DESC',
+      // },
     })
   },
   async generate(user_id: string): Promise<UserToken | null> {

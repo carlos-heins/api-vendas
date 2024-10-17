@@ -1,7 +1,7 @@
 import { UsersRepository } from '../typeorm/repositories/UsersRepository'
 import AppError from '@shared/errors/AppError'
 import { UserTokensRepository } from '../typeorm/repositories/UserTokensRepository'
-import dayjs from 'dayjs'
+import { isAfter, addHours } from 'date-fns'
 import { hash } from 'bcryptjs'
 
 interface IRequest {
@@ -22,15 +22,15 @@ class ResetPasswordService {
     }
 
     const tokenCreatedAt = userToken.created_at
-    console.log(`tokenCreatedAt ${tokenCreatedAt}`)
-    const compareDate = dayjs(tokenCreatedAt).add(2, 'hour')
-    console.log(`compareDate ${compareDate}`)
-    console.log(`new: ${dayjs()}, klndsk: ${dayjs()}`)
-    if (compareDate.isAfter(dayjs())) {
+    const compareDate = addHours(tokenCreatedAt, 2)
+
+    if (isAfter(Date.now(), compareDate)) {
       throw new AppError('Token expired.')
     }
 
     user.password = await hash(password, 8)
+
+    await UsersRepository.save(user)
   }
 }
 
